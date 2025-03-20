@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Index from './components/index';
 import About from './components/about';
@@ -12,16 +13,16 @@ const App = () => {
   useEffect(() => {
     AOS.init();
 
-    const path = window.location.hash;
+    const path = window.location.pathname;
 
     let Component;
-    if (path === "#/about") {
+    if (path === "/about") {
       Component = <About />;
-    } else if (path === "#/courses") {
+    } else if (path === "/courses") {
       Component = <Courses />;
-    } else if (path === "#/events") {
+    } else if (path === "/events") {
       Component = <Events />;
-    } else if (path === "#/contact") {
+    } else if (path === "/contact") {
       Component = <Contact />;
     } else {
       Component = <Index />;
@@ -29,7 +30,7 @@ const App = () => {
 
     setComponent(Component);
 
-  }, [window.location.hash]); // Re-run whenever hash changes
+  }, [window.location.pathname]); // Re-run whenever path changes
 
   return (
     <div>
